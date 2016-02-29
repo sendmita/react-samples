@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <body>
+    <div id="content"></div>    
+    <script type="text/babel">
+     
+   // ReactDOM = require('react-dom');
+    
+   var StudentsList = React.createClass({
+  		  render: function() {
+  			return (
+  			  <div className="studentsList">
+  				<table cellpadding="10">
+  					  <thead>
+  							<tr><td>ID</td>
+  							<td>NAME</td>	</tr>						
+  						</thead>
+  						<tbody>
+  						<tr>	<td>1</td>
+  							<td>Scarlett</td>	</tr>						
+  						</tbody>
+  				</table>
+  			  </div>
+  			);
+  		  }
+  		});
+  		
+  		var SelectedStudent = React.createClass({
+  			render : function() {
+  				return (
+  					<div className="selectedStudent"><img src="data:image/jpeg;base64,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"></img></div>
+  				);
+  			}
+  		});
+  		
+  		
+  var StudentsView = React.createClass({
+  	  render: function() {
+  		return (
+  		  <div className="studentsView">
+  			<h1>STUDENTS</h1>
+  		  <StudentsList />
+  		  <SelectedStudent />
+  		  </div>
+  		);
+  	  }
+  	});
+  
+  window.ReactDOM.render(
+  	//React.render(
+  		  <StudentsView />,
+  		  document.getElementById('content')
+  		);
+		
+    </script>
+  </body>
+</html>

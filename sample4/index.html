@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+
+  <body>
+    <div id="content"></div>
+    <script type="text/babel">
+    
+  var masterData =[ "Scarlett","Bob", "Stuart"];
+    
+
+	var Form = React.createClass({
+  		  handleSubmit: function(e){
+  		    e.preventDefault();
+  		    var nameVal = ReactDOM.findDOMNode(this.refs.name);
+  		    this.props.addStudent(nameVal.value);
+  		    nameVal = '';
+  		  },
+  		 render:function(){
+  		    return (
+  		        <form onSubmit={this.handleSubmit}>
+  		            <input ref="name"/>
+  		            <button>ADD</button>
+  		        </form>
+  		      );
+  		 }  
+  });
+  		  
+  var StudentsView = React.createClass({
+     getInitialState: function(){
+          return {data : masterData};
+        },
+     addStudent: function(nameToAdd){
+          this.setState({data: this.state.data.concat(nameToAdd)});
+       },
+  	  render: function() {
+  	     var students = this.state.data.map(function(student) {
+  	             return (
+                      	<tr> 
+                          <td> {student}</td> 
+                        </tr>
+                     );
+                   });
+  		return (
+  		  <div className="studentsView">
+  			<h1>STUDENTS</h1>
+  			<Form addStudent={this.addStudent} />
+  			<br/>
+  		  <div className="studentsList">
+              <table> 
+               <div> {students} </div>
+              </table>
+            </div>
+  		  </div>
+  		);
+  	  }
+  	});
+  
+  window.ReactDOM.render(
+  		  <StudentsView />,
+  		  document.getElementById('content')
+  		);
+		
+    </script>
+  </body>
+
+</html>
